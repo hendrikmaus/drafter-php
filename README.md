@@ -34,7 +34,7 @@ Please keep in mind that **Drafter is not included**.
 ### Install Drafter Command Line Tool using Composer
 The Drafter repository itself has a section on [installing drafter](https://github.com/apiaryio/drafter#install) it.
 
-Another way of installing drafter, is using a [composer script](https://getcomposer.org/doc/articles/scripts.md).  
+Another way of installing Drafter, is using a [composer script](https://getcomposer.org/doc/articles/scripts.md).  
 If you do not already have, add a `scripts` section to your root composer.json:
 
 ```json
@@ -49,11 +49,14 @@ If you do not already have, add a `scripts` section to your root composer.json:
 }
 ```
 
+Now run `composer install`; it should start building drafter within an `ext/` folder in your project root.
+If you want the script to put drafter somewhere else, modify every occurrence of `ext/drafter` to another one.
+
 > Note: there is an open Composer feature request for downloading binaries and 
 > compiling from source: https://github.com/composer/composer/issues/4381
 
 You would see this method used by default, when [contributing to drafter-php](CONTRIBUTING.md).
-Installing Drafter using composer has only been tested on Mac OS X and Linux (Ubuntu 12).
+Installing Drafter using composer has only been tested on **Mac OS X and Linux (Ubuntu 12)**.
 
 If you have issues or questions regarding Drafter, please turn to 
 the [Drafter repository](https://github.com/apiaryio/drafter).
@@ -120,14 +123,6 @@ $drafter
 Do not hesitate to [contribute](https://github.com/hendrikmaus/drafter-php/blob/master/CONTRIBUTING.md).
 
 * [] support passing raw api blueprint code, rather than always a file path
-
-# Todo
-* [] create travis config
-* [] spec out readme
-* [] check package into packagist
-* [] code climate
-* [] create a pull request on drafter repo and add this project as a binding for PHP
-
 
 ## License
 Drafter-php is licensed under the MIT License - see the [LICENSE](https://github.com/hendrikmaus/drafter-php/blob/master/LICENSE) file for details
