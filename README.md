@@ -40,11 +40,11 @@ If you do not already have, add a `scripts` section to your root composer.json:
 ```json
 "scripts": {
     "post-install-cmd": [
-        "echo \"### Installing drafter to ./ext; drafter bin to ./vendor/bin/ ###\"",
-        "git clone --branch v0.1.9 --recursive https://github.com/apiaryio/drafter.git ext/drafter",
-        "cd ext/drafter && ./configure && make drafter",
-        "cd vendor/bin && ln -s ../../ext/drafter/bin/drafter drafter",
-        "echo \"### drafter installed ###\""
+        "if ! [[ -d ext/drafter ]]; then echo \"### Installing drafter to ./ext; drafter bin to ./vendor/bin/ ###\"; fi",
+        "if ! [[ -d ext/drafter ]]; then git clone --branch v0.1.9 --recursive https://github.com/apiaryio/drafter.git ext/drafter; fi",
+        "if ! [[ -d vendor/bin ]]; then mkdir -p vendor/bin; fi",
+        "if ! [[ -f vendor/bin/drafter ]]; then cd ext/drafter && ./configure && make drafter; fi",
+        "if ! [[ -f vendor/bin/drafter ]]; then cd vendor/bin && ln -s ../../ext/drafter/bin/drafter drafter; fi"
     ]
 }
 ```
