@@ -1,9 +1,9 @@
 # Drafter PHP Binding
-PHP wrapper for [drafter](https://github.com/apiaryio/drafter) API Blueprint Parser.
+PHP wrapper for [Drafter](https://github.com/apiaryio/drafter) API Blueprint Parser **v0.1.9**.
 
 [travis] [versioneye] [codeclimate]
 
-## What is drafter-php?
+## What is Drafter-php?
 Drafter-php allows you to use use the [drafter](https://github.com/apiaryio/drafter) API Blueprint Parser
 with your PHP application.
 
@@ -72,7 +72,19 @@ the [Drafter repository](https://github.com/apiaryio/drafter).
     
 ### Examples
 
+#### Make sure it works
+To make sure it works, we'll ask Drafter for the current version.
+
+```php
+$version = $drafter
+    ->version()
+    ->run();
+```
+`$version` should now contain a string like `v0.1.9`.
+ If something is wrong, an exception will have been thrown most likely.
+
 #### Parse your-service.apib into your-service.ast.json
+Make sure your input path is correct and readable, and your output path is writable.
 
 ```php
 $drafter
