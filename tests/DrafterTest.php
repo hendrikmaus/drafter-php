@@ -231,7 +231,7 @@ class DrafterTest extends \PHPUnit_Framework_TestCase
      * Catch an exception if the binary cannot be found.
      *
      * @expectedException \Exception
-     * @expectedExceptionMessage sh: INVALID: command not found
+     * @expectedExceptionMessage sh: INVALID:
      */
     public function testInvalidBinaryWillThrowException()
     {
