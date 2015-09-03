@@ -7,6 +7,9 @@ PHP wrapper for [Drafter](https://github.com/apiaryio/drafter) API Blueprint Par
 [![Dependency Status](https://www.versioneye.com/user/projects/55e7ed98211c6b00190007d2/badge.svg?style=flat)](https://www.versioneye.com/user/projects/55e7ed98211c6b00190007d2) 
 [![Code Climate](https://img.shields.io/codeclimate/github/kabisaict/flow.svg)](https://codeclimate.com/github/hendrikmaus/drafter-php)
 
+> This project hasn't reached v1.0.0 yet; the API is subject to change.
+> There will be upgrade guides for all future changes.
+
 ## What is Drafter-php?
 Drafter-php allows you to use use the [drafter](https://github.com/apiaryio/drafter) API Blueprint Parser
 with your PHP application.
