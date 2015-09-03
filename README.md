@@ -3,7 +3,7 @@ PHP wrapper for [Drafter](https://github.com/apiaryio/drafter) API Blueprint Par
 
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%205.4-8892BF.svg)](https://php.net/)
 [![Build Status](https://travis-ci.org/hendrikmaus/drafter-php.svg?branch=master)](https://travis-ci.org/hendrikmaus/drafter-php)
-[![Coverage Status](https://coveralls.io/repos/hendrikmaus/drafter-php/badge.svg?branch=master&service=github)](https://coveralls.io/github/hendrikmaus/drafter-php?branch=master)
+[![codecov.io](http://codecov.io/github/hendrikmaus/drafter-php/coverage.svg?branch=master)](http://codecov.io/github/hendrikmaus/drafter-php?branch=master)
 [![Dependency Status](https://www.versioneye.com/user/projects/55e7ed98211c6b00190007d2/badge.svg?style=flat)](https://www.versioneye.com/user/projects/55e7ed98211c6b00190007d2) 
 [![Code Climate](https://img.shields.io/codeclimate/github/kabisaict/flow.svg)](https://codeclimate.com/github/hendrikmaus/drafter-php)
 

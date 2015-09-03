@@ -13,18 +13,22 @@ matrix:
     - php: hhvm
 
 before_install:
-    - sudo apt-get update -qq
-    - sudo apt-get install -y g++
+  - sudo apt-get update -qq
+  - sudo apt-get install -y g++
+  - pip install codecov
 
 before_script:
-    - composer install
-    - git config --global user.name travis-ci
-    - git config --global user.email travis@example.com
+  - composer install
+  - git config --global user.name travis-ci
+  - git config --global user.email travis@example.com
 
 script: vendor/bin/phpunit
 
 after_script:
   - vendor/bin/test-reporter
+
+after_success:
+  - codecov
 
 addons:
   code_climate:
