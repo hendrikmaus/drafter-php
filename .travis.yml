@@ -15,10 +15,9 @@ matrix:
 before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -y g++
-  - pip install codecov
 
 before_script:
-  - composer install
+  - composer install --prefer-source --no-interaction --dev
   - git config --global user.name travis-ci
   - git config --global user.email travis@example.com
 
@@ -26,9 +25,7 @@ script: vendor/bin/phpunit
 
 after_script:
   - vendor/bin/test-reporter
-
-after_success:
-  - codecov
+  - bash <(curl -s https://codecov.io/bash)
 
 addons:
   code_climate:
