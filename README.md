@@ -70,7 +70,150 @@ the [Drafter repository](https://github.com/apiaryio/drafter).
     it has to be stored in a file at this time
 3. Run your command
     
-### Examples
+### Input / Output Examples
+Given this api blueprint source:
+
+```apib
+# GET /message
++ Response 200 (text/plain)
+
+        Hello World!
+```
+
+This abstract syntax tree will be the result (json format):
+
+```json
+{
+  "_version": "3.0",
+  "metadata": [],
+  "name": "",
+  "description": "",
+  "element": "category",
+  "resourceGroups": [
+    {
+      "name": "",
+      "description": "",
+      "resources": [
+        {
+          "element": "resource",
+          "name": "",
+          "description": "",
+          "uriTemplate": "/message",
+          "model": {},
+          "parameters": [],
+          "actions": [
+            {
+              "name": "",
+              "description": "",
+              "method": "GET",
+              "parameters": [],
+              "attributes": {
+                "relation": "",
+                "uriTemplate": ""
+              },
+              "content": [],
+              "examples": [
+                {
+                  "name": "",
+                  "description": "",
+                  "requests": [],
+                  "responses": [
+                    {
+                      "name": "200",
+                      "description": "",
+                      "headers": [
+                        {
+                          "name": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "body": "Hello World!\n",
+                      "schema": "",
+                      "content": [
+                        {
+                          "element": "asset",
+                          "attributes": {
+                            "role": "bodyExample"
+                          },
+                          "content": "Hello World!\n"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "content": []
+        }
+      ]
+    }
+  ],
+  "content": [
+    {
+      "element": "category",
+      "content": [
+        {
+          "element": "resource",
+          "name": "",
+          "description": "",
+          "uriTemplate": "/message",
+          "model": {},
+          "parameters": [],
+          "actions": [
+            {
+              "name": "",
+              "description": "",
+              "method": "GET",
+              "parameters": [],
+              "attributes": {
+                "relation": "",
+                "uriTemplate": ""
+              },
+              "content": [],
+              "examples": [
+                {
+                  "name": "",
+                  "description": "",
+                  "requests": [],
+                  "responses": [
+                    {
+                      "name": "200",
+                      "description": "",
+                      "headers": [
+                        {
+                          "name": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "body": "Hello World!\n",
+                      "schema": "",
+                      "content": [
+                        {
+                          "element": "asset",
+                          "attributes": {
+                            "role": "bodyExample"
+                          },
+                          "content": "Hello World!\n"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "content": []
+        }
+      ]
+    }
+  ]
+}
+```
+    
+### Code Examples
+
+> Found something wrong? Feel free to [contribute](https://github.com/hendrikmaus/drafter-php/blob/master/CONTRIBUTING.md)
 
 #### Make sure it works
 To make sure it works, we'll ask Drafter for the current version.
@@ -79,9 +222,16 @@ To make sure it works, we'll ask Drafter for the current version.
 $version = $drafter
     ->version()
     ->run();
+
+// Reset options on the command
+$drafter->resetOptions();
 ```
 `$version` should now contain a string like `v0.1.9`.
  If something is wrong, an exception will have been thrown most likely.
+ 
+ > Keep in mind that Drafter-php is designed to keep its state,
+ > run `\DrafterPhp\DrafterInterface::resetOptions` to get rid of the version option you just set
+ > for the next call on the instance.
 
 #### Parse your-service.apib into your-service.ast.json
 Make sure your input path is correct and readable, and your output path is writable.
