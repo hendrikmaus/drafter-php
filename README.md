@@ -1,7 +1,11 @@
 # Drafter PHP Binding
 PHP wrapper for [Drafter](https://github.com/apiaryio/drafter) API Blueprint Parser **v0.1.9**.
 
-[travis] [versioneye] [codeclimate] [coverage report]
+[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%205.4-8892BF.svg?style=flat-square)](https://php.net/)
+[![Build Status](https://img.shields.io/travis/joyent/node.svg?style=flat-square)](https://travis-ci.org/hendrikmaus/drafter-php)
+[![Dependency Status](https://img.shields.io/versioneye/d/rails.svg?style=flat-square)](https://www.versioneye.com/user/projects/55e7ed98211c6b00190007d2) 
+[![Code Climate](https://img.shields.io/codeclimate/github/kabisaict/flow.svg?style=flat-square)](https://codeclimate.com/github/hendrikmaus/drafter-php)
+[coverage badge]
 
 ## What is Drafter-php?
 Drafter-php allows you to use use the [drafter](https://github.com/apiaryio/drafter) API Blueprint Parser
