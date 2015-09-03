@@ -1,7 +1,7 @@
 # Drafter PHP Binding
 PHP wrapper for [Drafter](https://github.com/apiaryio/drafter) API Blueprint Parser **v0.1.9**.
 
-[travis] [versioneye] [codeclimate]
+[travis] [versioneye] [codeclimate] [coverage report]
 
 ## What is Drafter-php?
 Drafter-php allows you to use use the [drafter](https://github.com/apiaryio/drafter) API Blueprint Parser
@@ -65,7 +65,7 @@ the [Drafter repository](https://github.com/apiaryio/drafter).
 1. Get an instance of the `\DrafterPhp\DrafterInterface` implementation, `\DrafterPhp\Drafter`
 1.1 You will need to pass the path to your drafter binary to the constructor
 1.2 It is recommended to solve this using a dependency injection container
-2. Set the inputPath file and options on your `\DrafterPhp\Drafter` instance
+2. Set the input file and options on your `\DrafterPhp\Drafter` instance
 2.1 Drafter-php currently does not support passing blueprint code directly to Drafter;
     it has to be stored in a file at this time
 3. Run your command
@@ -88,7 +88,7 @@ Make sure your input path is correct and readable, and your output path is writa
 
 ```php
 $drafter
-    ->inputPath('your-service.apib')
+    ->input('your-service.apib')
     ->format('json')
     ->output('your-service.ast.json')
     ->run();
@@ -98,7 +98,7 @@ $drafter
 
 ```php
 $ast = $drafter
-    ->inputPath('your-service.apib')
+    ->input('your-service.apib')
     ->format('json')
     ->run();
     
@@ -110,7 +110,7 @@ $phpArr = json_decode($ast, true);
 
 ```php
 $drafter
-    ->inputPath('your-service.apib')
+    ->input('your-service.apib')
     ->format('yaml') // optional as yaml is the default
     ->output('your-service.ast.yml')
     ->run();
@@ -120,7 +120,7 @@ $drafter
 
 ```php
 $process = $drafter
-    ->inputPath('your-service.apib')
+    ->input('your-service.apib')
     ->format('json')
     ->output('your-service.ast.json')
     ->build();
@@ -134,7 +134,8 @@ $drafter
 ## Feature Roadmap
 Do not hesitate to [contribute](https://github.com/hendrikmaus/drafter-php/blob/master/CONTRIBUTING.md).
 
-* [] support passing raw api blueprint code, rather than always a file path
+* [] support passing raw api blueprint code into `\DrafterPhp\DrafterInterface::input`, rather than always a file path
 
 ## License
-Drafter-php is licensed under the MIT License - see the [LICENSE](https://github.com/hendrikmaus/drafter-php/blob/master/LICENSE) file for details
+Drafter-php is licensed under the MIT License - see the 
+[LICENSE](https://github.com/hendrikmaus/drafter-php/blob/master/LICENSE) file for details

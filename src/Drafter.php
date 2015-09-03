@@ -6,7 +6,7 @@
  *
  * ```php
  * $ast = $drafter
- *  ->inputPath('blueprint.apib')
+ *  ->input('blueprint.apib')
  *  ->format('json')
  *  ->output('ast.json')
  *  ->run();
@@ -87,7 +87,7 @@ class Drafter implements DrafterInterface
         $this->binary = $binPath;
     }
 
-    public function inputPath($path)
+    public function input($path)
     {
         $this->input = $path;
 
@@ -189,12 +189,12 @@ class Drafter implements DrafterInterface
         return $this;
     }
 
-    public function getInputPath()
+    public function getInput()
     {
         return $this->input;
     }
 
-    public function resetInputPath()
+    public function resetInput()
     {
         $this->input = null;
 

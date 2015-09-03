@@ -19,7 +19,7 @@ interface DrafterInterface
      * @param string $path input apib file path, e.g. /your-service/docs/your-service.apib
      * @return $this
      */
-    public function inputPath($path);
+    public function input($path);
 
     /**
      * Set output path.
@@ -165,12 +165,12 @@ interface DrafterInterface
      *
      * @return string[]
      */
-    public function getInputPath();
+    public function getInput();
 
     /**
      * Reset input file path.
      *
      * @return $this
      */
-    public function resetInputPath();
+    public function resetInput();
 }

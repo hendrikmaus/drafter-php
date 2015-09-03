@@ -21,7 +21,7 @@ E.g.:
 
 ```php
 $process = $drafter
- ->inputPath('blueprint.apib')
+ ->input('blueprint.apib')
  ->format('json')
  ->output('ast.json')
  ->build();

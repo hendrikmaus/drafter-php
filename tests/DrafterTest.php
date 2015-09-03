@@ -90,7 +90,7 @@ class DrafterTest extends \PHPUnit_Framework_TestCase
     {
         $result = $this
             ->drafter
-            ->inputPath($this->fixturePath . 'simplest-example.apib')
+            ->input($this->fixturePath . 'simplest-example.apib')
             ->format('json')
             ->run();
 
@@ -124,7 +124,7 @@ class DrafterTest extends \PHPUnit_Framework_TestCase
     {
         $process = $this
             ->drafter
-            ->inputPath($this->fixturePath . 'simplest-example.apib')
+            ->input($this->fixturePath . 'simplest-example.apib')
             ->format('json')
             ->build();
 
@@ -147,7 +147,7 @@ class DrafterTest extends \PHPUnit_Framework_TestCase
     {
         $result = $this
             ->drafter
-            ->inputPath($this->fixturePath . 'simplest-example.apib')
+            ->input($this->fixturePath . 'simplest-example.apib')
             ->format('json')
             ->run();
 
@@ -169,7 +169,7 @@ class DrafterTest extends \PHPUnit_Framework_TestCase
     {
         $this
             ->drafter
-            ->inputPath('some-input')
+            ->input('some-input')
             ->output('some-output')
             ->version()
             ->validate()
@@ -198,15 +198,15 @@ class DrafterTest extends \PHPUnit_Framework_TestCase
     {
         $this
             ->drafter
-            ->inputPath('some-input');
+            ->input('some-input');
 
-        $this->assertEquals('some-input', $this->drafter->getInputPath());
+        $this->assertEquals('some-input', $this->drafter->getInput());
 
         $this
             ->drafter
-            ->resetInputPath();
+            ->resetInput();
 
-        $this->assertNull($this->drafter->getInputPath());
+        $this->assertNull($this->drafter->getInput());
     }
 
     /**
@@ -252,7 +252,7 @@ class DrafterTest extends \PHPUnit_Framework_TestCase
     {
         $this
             ->drafter
-            ->inputPath('INVALID')
+            ->input('INVALID')
             ->run();
     }
 
@@ -266,7 +266,7 @@ class DrafterTest extends \PHPUnit_Framework_TestCase
     {
         $this
             ->drafter
-            ->inputPath($this->fixturePath . 'simplest-example.apib')
+            ->input($this->fixturePath . 'simplest-example.apib')
             ->format('INVALID')
             ->run();
     }
