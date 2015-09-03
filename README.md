@@ -2,10 +2,10 @@
 PHP wrapper for [Drafter](https://github.com/apiaryio/drafter) API Blueprint Parser **v0.1.9**.
 
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%205.4-8892BF.svg?style=flat-square)](https://php.net/)
-[![Build Status](https://img.shields.io/travis/joyent/node.svg?style=flat-square)](https://travis-ci.org/hendrikmaus/drafter-php)
-[![Dependency Status](https://img.shields.io/versioneye/d/rails.svg?style=flat-square)](https://www.versioneye.com/user/projects/55e7ed98211c6b00190007d2) 
+[![Build Status](https://travis-ci.org/hendrikmaus/drafter-php.svg?branch=master)](https://travis-ci.org/hendrikmaus/drafter-php)
+[![Coverage Status](https://coveralls.io/repos/hendrikmaus/drafter-php/badge.svg?branch=master&service=github)](https://coveralls.io/github/hendrikmaus/drafter-php?branch=master)
+[![Dependency Status](https://www.versioneye.com/user/projects/55e7ed98211c6b00190007d2/badge.svg?style=flat)](https://www.versioneye.com/user/projects/55e7ed98211c6b00190007d2) 
 [![Code Climate](https://img.shields.io/codeclimate/github/kabisaict/flow.svg?style=flat-square)](https://codeclimate.com/github/hendrikmaus/drafter-php)
-[coverage badge]
 
 ## What is Drafter-php?
 Drafter-php allows you to use use the [drafter](https://github.com/apiaryio/drafter) API Blueprint Parser
