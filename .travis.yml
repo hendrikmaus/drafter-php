@@ -33,4 +33,4 @@ after_script:
 
 addons:
   code_climate:
-    repo_token: aff33f...
+    repo_token: c8a07ee2759b229cb3bee66fb112ef1ce95494c
