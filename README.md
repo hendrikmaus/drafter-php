@@ -1,5 +1,5 @@
 # Drafter PHP Binding
-PHP wrapper for [Drafter](https://github.com/apiaryio/drafter) API Blueprint Parser **v0.1.9**.
+PHP wrapper for [Drafter](https://github.com/apiaryio/drafter) API Blueprint Parser harness **v1.x**.
 
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%205.4-8892BF.svg)](https://php.net/)
 [![Build Status](https://travis-ci.org/hendrikmaus/drafter-php.svg?branch=master)](https://travis-ci.org/hendrikmaus/drafter-php)
@@ -7,22 +7,19 @@ PHP wrapper for [Drafter](https://github.com/apiaryio/drafter) API Blueprint Par
 [![Dependency Status](https://www.versioneye.com/user/projects/55e7ed98211c6b00190007d2/badge.svg?style=flat)](https://www.versioneye.com/user/projects/55e7ed98211c6b00190007d2) 
 [![Code Climate](https://img.shields.io/codeclimate/github/kabisaict/flow.svg)](https://codeclimate.com/github/hendrikmaus/drafter-php)
 
-> This project hasn't reached v1.0.0 yet; the API is subject to change.
-> There will be upgrade guides for all future changes.
-
 ## What is Drafter-php?
-Drafter-php allows you to use use the [drafter](https://github.com/apiaryio/drafter) API Blueprint Parser
+Drafter-php allows you to use use the [drafter](https://github.com/apiaryio/drafter) API Blueprint Parser harness
 with your PHP application.
 
 In a nutshell: you can convert [API Blueprint](http://apiblueprint.org/) files to 
-Abstract Syntax Trees in JSON or YAML format.
+[refract] Abstract Syntax Trees in JSON or YAML format.
 
 [API Blueprint](http://apiblueprint.org/) is a webservice documentation language built on top of 
 [Markdown](https://en.wikipedia.org/wiki/Markdown).
 
 ## Requirements
 * PHP 5.4 or greater
-* Drafter v0.1.9 [command line tool](https://github.com/apiaryio/drafter#drafter-command-line-tool)
+* Drafter v1.x [command line tool](https://github.com/apiaryio/drafter#drafter-command-line-tool)
 
 ## What Is What
 **Drafter** is a C++ tool to parse API Blueprint.  
@@ -48,7 +45,7 @@ If you do not already have, add a `scripts` section to your root composer.json:
 "scripts": {
     "post-install-cmd": [
         "if ! [[ -d ext/drafter ]]; then echo \"### Installing drafter to ./ext; drafter bin to ./vendor/bin/ ###\"; fi",
-        "if ! [[ -d ext/drafter ]]; then git clone --branch v0.1.9 --recursive https://github.com/apiaryio/drafter.git ext/drafter; fi",
+        "if ! [[ -d ext/drafter ]]; then git clone --branch v1.0.0 --recursive https://github.com/apiaryio/drafter.git ext/drafter; fi",
         "if ! [[ -d vendor/bin ]]; then mkdir -p vendor/bin; fi",
         "if ! [[ -f vendor/bin/drafter ]]; then cd ext/drafter && ./configure && make drafter; fi",
         "if ! [[ -f vendor/bin/drafter ]]; then cd vendor/bin && ln -s ../../ext/drafter/bin/drafter drafter; fi"
@@ -87,11 +84,107 @@ Given this api blueprint source:
         Hello World!
 ```
 
-This abstract syntax tree will be the result (json format):
+This refract element will be the result (json format):
 
 ```json
 {
-  "_version": "3.0",
+  "element": "category",
+  "meta": {
+    "classes": [
+      "api"
+    ],
+    "title": ""
+  },
+  "content": [
+    {
+      "element": "category",
+      "meta": {
+        "classes": [
+          "resourceGroup"
+        ],
+        "title": ""
+      },
+      "content": [
+        {
+          "element": "resource",
+          "meta": {
+            "title": ""
+          },
+          "attributes": {
+            "href": "/message"
+          },
+          "content": [
+            {
+              "element": "transition",
+              "meta": {
+                "title": ""
+              },
+              "content": [
+                {
+                  "element": "httpTransaction",
+                  "content": [
+                    {
+                      "element": "httpRequest",
+                      "attributes": {
+                        "method": "GET"
+                      },
+                      "content": []
+                    },
+                    {
+                      "element": "httpResponse",
+                      "attributes": {
+                        "statusCode": "200",
+                        "headers": {
+                          "element": "httpHeaders",
+                          "content": [
+                            {
+                              "element": "member",
+                              "content": {
+                                "key": {
+                                  "element": "string",
+                                  "content": "Content-Type"
+                                },
+                                "value": {
+                                  "element": "string",
+                                  "content": "text/plain"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "content": [
+                        {
+                          "element": "asset",
+                          "meta": {
+                            "classes": "messageBody"
+                          },
+                          "attributes": {
+                            "contentType": "text/plain"
+                          },
+                          "content": "Hello World!\n"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+Setting the type option to 'ast', results in this abstract syntax tree:
+
+> type 'refract' is the default since since drafter v1.0.0
+
+```json
+{
+  "_version": "4.0",
   "metadata": [],
   "name": "",
   "description": "",
@@ -233,12 +326,24 @@ $version = $drafter
 // Reset options on the command
 $drafter->resetOptions();
 ```
-`$version` should now contain a string like `v0.1.9`.
+`$version` should now contain a string like `v1.0.0`.
  If something is wrong, an exception will have been thrown most likely.
  
  > Keep in mind that Drafter-php is designed to keep its state,
  > run `\DrafterPhp\DrafterInterface::resetOptions` to get rid of the version option you just set
  > for the next call on the instance.
+
+#### Parse your-service.apib into your-service.refract.json
+Make sure your input path is correct and readable, and your output path is writable.
+
+```php
+$drafter
+    ->input('your-service.apib')
+    ->format('json')
+    ->type('refract')
+    ->output('your-service.refract.json')
+    ->run();
+```
 
 #### Parse your-service.apib into your-service.ast.json
 Make sure your input path is correct and readable, and your output path is writable.
@@ -254,13 +359,13 @@ $drafter
 #### Parse your-service.apib into a PHP data structure
 
 ```php
-$ast = $drafter
+$refract = $drafter
     ->input('your-service.apib')
     ->format('json')
     ->run();
     
-$phpObj = json_decode($ast);
-$phpArr = json_decode($ast, true);
+$phpObj = json_decode($refract);
+$phpArr = json_decode($refract, true);
 ```
 
 #### Parse your-service.apib into YAML format
@@ -279,7 +384,7 @@ $drafter
 $process = $drafter
     ->input('your-service.apib')
     ->format('json')
-    ->output('your-service.ast.json')
+    ->output('your-service.refract.json')
     ->build();
 
 // do stuff with the process
@@ -291,7 +396,7 @@ $drafter
 ## Feature Roadmap
 Do not hesitate to [contribute](https://github.com/hendrikmaus/drafter-php/blob/master/CONTRIBUTING.md).
 
-* [] support passing raw api blueprint code into `\DrafterPhp\DrafterInterface::input`, rather than always a file path
+* [ ] support passing raw api blueprint code into `\DrafterPhp\DrafterInterface::input`, rather than always a file path
 
 ## License
 Drafter-php is licensed under the MIT License - see the 

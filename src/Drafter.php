@@ -29,7 +29,8 @@
  *
  * options:
  * -o, --output          save output AST into file (string [=])
- * -f, --format          output AST format (string [=yaml])
+ * -f, --format          output format of the AST (yaml|json) (string [=yaml])
+ * -t, --type            type of the AST (refract|ast) (string [=refract])
  * -s, --sourcemap       export sourcemap AST into file (string [=])
  * -h, --help            display this help message
  * -v, --version         print Drafter version
@@ -104,6 +105,13 @@ class Drafter implements DrafterInterface
     public function format($format)
     {
         $this->options['--format'] = $format;
+
+        return $this;
+    }
+
+    public function type($type)
+    {
+        $this->options['--type'] = $type;
 
         return $this;
     }
