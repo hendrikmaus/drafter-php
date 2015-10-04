@@ -79,18 +79,18 @@ class DrafterTest extends \PHPUnit_Framework_TestCase
         $version = trim($version);
 
         // Assert the fixed version of drafter that this package currently supports
-        $this->assertEquals('v0.1.9', $version);
-        $this->assertRegExp('/v\d+\.\d+\.\d+/', $version);
+        $this->assertRegExp('/v1\.\d+\.\d+/', $version);
     }
 
     /**
      * Parse a simple example to json ast.
      */
-    public function testParseSimplestExampleToJson()
+    public function testParseSimplestAstExampleToJson()
     {
         $result = $this
             ->drafter
             ->input($this->fixturePath . 'simplest-example.apib')
+            ->type('ast')
             ->format('json')
             ->run();
 
@@ -104,10 +104,31 @@ class DrafterTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Parse a simple example to json ast.
+     */
+    public function testParseSimplestRefractExampleToJson()
+    {
+        $result = $this
+            ->drafter
+            ->input($this->fixturePath . 'simplest-example.apib')
+            ->type('refract')
+            ->format('json')
+            ->run();
+
+        $this->assertNotNull($result);
+        $this->assertJsonStringEqualsJsonFile(
+            $this->fixturePath . 'simplest-example-refract.json',
+            $result
+        );
+
+        return $this->drafter;
+    }
+
+    /**
      * The drafter instance will hold its state; we can invoke `run` again for the same result.
      *
      * @param Drafter $drafter
-     * @depends testParseSimplestExampleToJson
+     * @depends testParseSimplestAstExampleToJson
      */
     public function testRunningDrafterAgainWithoutReset(Drafter $drafter)
     {
@@ -126,6 +147,7 @@ class DrafterTest extends \PHPUnit_Framework_TestCase
             ->drafter
             ->input($this->fixturePath . 'simplest-example.apib')
             ->format('json')
+            ->type('ast')
             ->build();
 
         $this->assertInstanceOf('\Symfony\Component\Process\Process', $process);
@@ -149,6 +171,7 @@ class DrafterTest extends \PHPUnit_Framework_TestCase
             ->drafter
             ->input($this->fixturePath . 'simplest-example.apib')
             ->format('json')
+            ->type('ast')
             ->run();
 
         $astFixture = file_get_contents($this->fixturePath . 'simplest-example-ast.json');
