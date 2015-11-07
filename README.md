@@ -1,7 +1,7 @@
 # Drafter PHP Wrapper
 PHP wrapper for [Drafter](https://github.com/apiaryio/drafter) API Blueprint Parser harness.
 
-[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%205.4-8892BF.svg)](https://php.net/)
+[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%205.6-8892BF.svg)](https://php.net/)
 [![Build Status](https://travis-ci.org/hendrikmaus/drafter-php.svg?branch=master)](https://travis-ci.org/hendrikmaus/drafter-php)
 [![codecov.io](http://codecov.io/github/hendrikmaus/drafter-php/coverage.svg?branch=master)](http://codecov.io/github/hendrikmaus/drafter-php?branch=master)
 [![Dependency Status](https://www.versioneye.com/user/projects/55e7ed98211c6b00190007d2/badge.svg?style=flat)](https://www.versioneye.com/user/projects/55e7ed98211c6b00190007d2) 
