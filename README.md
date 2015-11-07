@@ -1,5 +1,5 @@
-# Drafter PHP Binding
-PHP wrapper for [Drafter](https://github.com/apiaryio/drafter) API Blueprint Parser harness **v1.x**.
+# Drafter PHP Wrapper
+PHP wrapper for [Drafter](https://github.com/apiaryio/drafter) API Blueprint Parser harness.
 
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%205.4-8892BF.svg)](https://php.net/)
 [![Build Status](https://travis-ci.org/hendrikmaus/drafter-php.svg?branch=master)](https://travis-ci.org/hendrikmaus/drafter-php)
@@ -18,8 +18,8 @@ In a nutshell: you can convert [API Blueprint](http://apiblueprint.org/) files t
 [Markdown](https://en.wikipedia.org/wiki/Markdown).
 
 ## Requirements
-* PHP 5.4 or greater
-* Drafter v1.x [command line tool](https://github.com/apiaryio/drafter#drafter-command-line-tool)
+* PHP 5.6 or greater
+* Drafter [command line tool](https://github.com/apiaryio/drafter#drafter-command-line-tool)
 
 ## What Is What
 **Drafter** is a C++ tool to parse API Blueprint.  
@@ -45,13 +45,16 @@ If you do not already have, add a `scripts` section to your root composer.json:
 "scripts": {
     "post-install-cmd": [
         "if ! [[ -d ext/drafter ]]; then echo \"### Installing drafter to ./ext; drafter bin to ./vendor/bin/ ###\"; fi",
-        "if ! [[ -d ext/drafter ]]; then git clone --branch v1.0.0 --recursive https://github.com/apiaryio/drafter.git ext/drafter; fi",
+        "if ! [[ -d ext/drafter ]]; then git clone --recursive https://github.com/apiaryio/drafter.git ext/drafter; fi",
         "if ! [[ -d vendor/bin ]]; then mkdir -p vendor/bin; fi",
         "if ! [[ -f vendor/bin/drafter ]]; then cd ext/drafter && ./configure && make drafter; fi",
         "if ! [[ -f vendor/bin/drafter ]]; then cd vendor/bin && ln -s ../../ext/drafter/bin/drafter drafter; fi"
     ]
 }
 ```
+
+> Note: the git clone command currently fetches the latest master of drafter; you can customize this to fir your needs,
+> e.g. use a tagged release or a specific commit
 
 Now run `composer install`; it should start building drafter within an `ext/` folder in your project root.
 If you want the script to put drafter somewhere else, modify every occurrence of `ext/drafter` to another one.
@@ -75,6 +78,10 @@ the [Drafter repository](https://github.com/apiaryio/drafter).
 3. Run your command
     
 ### Input / Output Examples
+
+> Note: drafter-php does not assert the structure of the output.
+> If you see differences in the examples to your actual output, please refer to the official drafter docs.
+
 Given this api blueprint source:
 
 ```apib
@@ -84,7 +91,7 @@ Given this api blueprint source:
         Hello World!
 ```
 
-This refract element will be the result (json format):
+The result will look similar (json format):
 
 ```json
 {
