@@ -1,4 +1,4 @@
-# Drafter PHP Binding
+# Drafter PHP Wrapper
 PHP wrapper for [Drafter](https://github.com/apiaryio/drafter) API Blueprint Parser harness **v1.x**.
 
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%205.4-8892BF.svg)](https://php.net/)
