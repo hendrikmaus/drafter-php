@@ -6,6 +6,17 @@ The change log itself is written the way that [keepachangelog.com](http://keepac
 
 ## [Unreleased]
 
+## [2.0.0] - 2015-11-07
+## Changed
+- Increased min required PHP version to >=5.6 [BC]
+- Bumped PHPUnit to v5.x
+- Composer install example always uses the latest master of drafter
+- Allow v3 of Symfony component
+
+## Removed
+- Tests do not care about the exact drafter output
+- Exact match fixtures used by the removed test assertions
+
 ## [1.0.0] - 2015-10-04
 ## Changed
 - Install example to drafter v1.0.0

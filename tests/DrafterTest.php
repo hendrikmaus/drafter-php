@@ -86,18 +86,15 @@ class DrafterTest extends \PHPUnit_Framework_TestCase
      */
     public function testParseSimplestAstExampleToJson()
     {
-        $result = $this
+        $json = $this
             ->drafter
             ->input($this->fixturePath . 'simplest-example.apib')
             ->type('ast')
             ->format('json')
             ->run();
 
-        $this->assertNotNull($result);
-        $this->assertJsonStringEqualsJsonFile(
-            $this->fixturePath . 'simplest-example-ast.json',
-            $result
-        );
+        $this->assertNotNull($json);
+        $this->assertJson($json);
 
         return $this->drafter;
     }
@@ -107,18 +104,15 @@ class DrafterTest extends \PHPUnit_Framework_TestCase
      */
     public function testParseSimplestRefractExampleToJson()
     {
-        $result = $this
+        $json = $this
             ->drafter
             ->input($this->fixturePath . 'simplest-example.apib')
             ->type('refract')
             ->format('json')
             ->run();
 
-        $this->assertNotNull($result);
-        $this->assertJsonStringEqualsJsonFile(
-            $this->fixturePath . 'simplest-example-refract.json',
-            $result
-        );
+        $this->assertNotNull($json);
+        $this->assertJson($json);
 
         return $this->drafter;
     }
@@ -131,10 +125,7 @@ class DrafterTest extends \PHPUnit_Framework_TestCase
      */
     public function testRunningDrafterAgainWithoutReset(Drafter $drafter)
     {
-        $this->assertJsonStringEqualsJsonFile(
-            $this->fixturePath . 'simplest-example-ast.json',
-            $drafter->run()
-        );
+        $this->assertJson($drafter->run());
     }
 
     /**
@@ -151,37 +142,11 @@ class DrafterTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf('\Symfony\Component\Process\Process', $process);
 
-        $result = $this
+        $json = $this
             ->drafter
             ->run($process);
 
-        $this->assertJsonStringEqualsJsonFile(
-            $this->fixturePath . 'simplest-example-ast.json',
-            $result
-        );
-    }
-
-    /**
-     * Test turing the drafter json result into both php array and object.
-     */
-    public function testTurnDrafterResultIntoPhpDataStructure()
-    {
-        $result = $this
-            ->drafter
-            ->input($this->fixturePath . 'simplest-example.apib')
-            ->format('json')
-            ->type('ast')
-            ->run();
-
-        $astFixture = file_get_contents($this->fixturePath . 'simplest-example-ast.json');
-
-        $phpObject      = json_decode($result);
-        $expectedPhpObj = json_decode($astFixture);
-        $this->assertEquals($expectedPhpObj, $phpObject);
-
-        $phpArray = json_decode($result, true);
-        $expectedPhpArray = json_decode($astFixture, true);
-        $this->assertEquals($expectedPhpArray, $phpArray);
+        $this->assertJson($json);
     }
 
     /**
