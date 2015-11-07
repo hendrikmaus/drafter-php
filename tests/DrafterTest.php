@@ -78,8 +78,7 @@ class DrafterTest extends \PHPUnit_Framework_TestCase
         // the drafter binary will add a line break at the end of the version string
         $version = trim($version);
 
-        // Assert the fixed version of drafter that this package currently supports
-        $this->assertRegExp('/v1\.\d+\.\d+/', $version);
+        $this->assertNotEmpty($version);
     }
 
     /**
