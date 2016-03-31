@@ -90,85 +90,92 @@ Given this api blueprint source:
         Hello World!
 ```
 
-The result will look similar (json format):
+The result will look similar (json refract):
 
 ```json
 {
-  "element": "category",
-  "meta": {
-    "classes": [
-      "api"
-    ],
-    "title": ""
-  },
+  "element": "parseResult",
   "content": [
     {
       "element": "category",
       "meta": {
         "classes": [
-          "resourceGroup"
+          "api"
         ],
         "title": ""
       },
       "content": [
         {
-          "element": "resource",
+          "element": "category",
           "meta": {
+            "classes": [
+              "resourceGroup"
+            ],
             "title": ""
-          },
-          "attributes": {
-            "href": "/message"
           },
           "content": [
             {
-              "element": "transition",
+              "element": "resource",
               "meta": {
                 "title": ""
               },
+              "attributes": {
+                "href": "/message"
+              },
               "content": [
                 {
-                  "element": "httpTransaction",
+                  "element": "transition",
+                  "meta": {
+                    "title": ""
+                  },
                   "content": [
                     {
-                      "element": "httpRequest",
-                      "attributes": {
-                        "method": "GET"
-                      },
-                      "content": []
-                    },
-                    {
-                      "element": "httpResponse",
-                      "attributes": {
-                        "statusCode": "200",
-                        "headers": {
-                          "element": "httpHeaders",
-                          "content": [
-                            {
-                              "element": "member",
-                              "content": {
-                                "key": {
-                                  "element": "string",
-                                  "content": "Content-Type"
-                                },
-                                "value": {
-                                  "element": "string",
-                                  "content": "text/plain"
-                                }
-                              }
-                            }
-                          ]
-                        }
-                      },
+                      "element": "httpTransaction",
                       "content": [
                         {
-                          "element": "asset",
-                          "meta": {
-                            "classes": "messageBody"
-                          },
+                          "element": "httpRequest",
                           "attributes": {
-                            "contentType": "text/plain"
+                            "method": "GET"
                           },
-                          "content": "Hello World!\n"
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "text/plain"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "text/plain"
+                              },
+                              "content": "Hello World!\n"
+                            }
+                          ]
                         }
                       ]
                     }
@@ -184,139 +191,6 @@ The result will look similar (json format):
 }
 ```
 
-Setting the type option to 'ast', results in this abstract syntax tree:
-
-> type 'refract' is the default since since drafter v1.0.0
-
-```json
-{
-  "_version": "4.0",
-  "metadata": [],
-  "name": "",
-  "description": "",
-  "element": "category",
-  "resourceGroups": [
-    {
-      "name": "",
-      "description": "",
-      "resources": [
-        {
-          "element": "resource",
-          "name": "",
-          "description": "",
-          "uriTemplate": "/message",
-          "model": {},
-          "parameters": [],
-          "actions": [
-            {
-              "name": "",
-              "description": "",
-              "method": "GET",
-              "parameters": [],
-              "attributes": {
-                "relation": "",
-                "uriTemplate": ""
-              },
-              "content": [],
-              "examples": [
-                {
-                  "name": "",
-                  "description": "",
-                  "requests": [],
-                  "responses": [
-                    {
-                      "name": "200",
-                      "description": "",
-                      "headers": [
-                        {
-                          "name": "Content-Type",
-                          "value": "text/plain"
-                        }
-                      ],
-                      "body": "Hello World!\n",
-                      "schema": "",
-                      "content": [
-                        {
-                          "element": "asset",
-                          "attributes": {
-                            "role": "bodyExample"
-                          },
-                          "content": "Hello World!\n"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          ],
-          "content": []
-        }
-      ]
-    }
-  ],
-  "content": [
-    {
-      "element": "category",
-      "content": [
-        {
-          "element": "resource",
-          "name": "",
-          "description": "",
-          "uriTemplate": "/message",
-          "model": {},
-          "parameters": [],
-          "actions": [
-            {
-              "name": "",
-              "description": "",
-              "method": "GET",
-              "parameters": [],
-              "attributes": {
-                "relation": "",
-                "uriTemplate": ""
-              },
-              "content": [],
-              "examples": [
-                {
-                  "name": "",
-                  "description": "",
-                  "requests": [],
-                  "responses": [
-                    {
-                      "name": "200",
-                      "description": "",
-                      "headers": [
-                        {
-                          "name": "Content-Type",
-                          "value": "text/plain"
-                        }
-                      ],
-                      "body": "Hello World!\n",
-                      "schema": "",
-                      "content": [
-                        {
-                          "element": "asset",
-                          "attributes": {
-                            "role": "bodyExample"
-                          },
-                          "content": "Hello World!\n"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          ],
-          "content": []
-        }
-      ]
-    }
-  ]
-}
-```
-    
 ### Code Examples
 
 > Found something wrong? Feel free to [contribute](https://github.com/hendrikmaus/drafter-php/blob/master/CONTRIBUTING.md)
