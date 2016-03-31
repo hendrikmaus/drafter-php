@@ -6,7 +6,7 @@
  * @package   DrafterPhp
  */
 
-namespace DrafterPhp;
+namespace Hmaus\DrafterPhp;
 
 use Symfony\Component\Process\Process;
 

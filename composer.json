@@ -20,12 +20,12 @@
     },
     "autoload": {
         "psr-4": {
-            "DrafterPhp\\": "src"
+            "Hmaus\\DrafterPhp\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "DrafterPhp\\Tests\\": "tests"
+            "Hmaus\\DrafterPhp\\Tests\\": "tests"
         }
     },
     "scripts": {
