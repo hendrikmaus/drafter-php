@@ -3,11 +3,10 @@
  * @author    hmaus
  * @since     2015-08-28
  * @copyright 2015 (c) Hendrik Maus
- * @license   All rights reserved.
  * @package   DrafterPhp
  */
 
-namespace DrafterPhp;
+namespace Hmaus\DrafterPhp;
 
 use Symfony\Component\Process\Process;
 
@@ -68,16 +67,14 @@ interface DrafterInterface
     /**
      * Set sourcemap argument.
      *
-     * Drafter will write the source map file to this location.
-     * Make sure it is writable beforehand.
+     * Drafter will export sourcemap in the Parse Result
      *
      * Help:
-     *   -s, --sourcemap export sourcemap AST into file (string [=])
+     *   -s, --sourcemap export sourcemap in the Parse Result
      *
-     * @param string $path output path
      * @return $this
      */
-    public function sourcemap($path);
+    public function sourcemap();
 
     /**
      * Get drafter version.

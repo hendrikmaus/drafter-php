@@ -4,21 +4,20 @@
  *
  * todo, test:
  *  - output cannot be written to disk
- *  - sourcemap cannot be written to disk
  *  - validate options is set, validation fails
  *  - use line num behavior
  *
  * @author    hmaus
  * @since     2015-08-28
  * @copyright 2015 (c) Hendrik Maus
- * @license   All rights reserved.
  * @package   DrafterPhp
  */
 
-namespace DrafterPhp\Tests;
+namespace Hmaus\DrafterPhp\Tests;
 
-use DrafterPhp\Drafter;
-use DrafterPhp\DrafterInterface;
+use Hmaus\DrafterPhp\Drafter;
+use Hmaus\DrafterPhp\DrafterInterface;
+use Symfony\Component\Process\Process;
 
 class DrafterTest extends \PHPUnit_Framework_TestCase
 {
@@ -55,7 +54,7 @@ class DrafterTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreateWrapperObject()
     {
-        $this->assertInstanceOf('\DrafterPhp\Drafter', $this->drafter);
+        $this->assertInstanceOf(Drafter::class, $this->drafter);
     }
 
     /**
@@ -140,7 +139,7 @@ class DrafterTest extends \PHPUnit_Framework_TestCase
             ->type('ast')
             ->build();
 
-        $this->assertInstanceOf('\Symfony\Component\Process\Process', $process);
+        $this->assertInstanceOf(Process::class, $process);
 
         $json = $this
             ->drafter
@@ -161,7 +160,7 @@ class DrafterTest extends \PHPUnit_Framework_TestCase
             ->version()
             ->validate()
             ->format('json')
-            ->sourcemap('some-sourcemap')
+            ->sourcemap()
             ->useLineNum();
 
         $expected = [
@@ -169,7 +168,7 @@ class DrafterTest extends \PHPUnit_Framework_TestCase
             '--version'      => '',
             '--validate'     => '',
             '--format'       => 'json',
-            '--sourcemap'    => 'some-sourcemap',
+            '--sourcemap'    => '',
             '--use-line-num' => ''
         ];
 

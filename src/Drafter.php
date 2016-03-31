@@ -28,24 +28,23 @@
  * If called without <input file>, 'drafter' will listen on stdin.
  *
  * options:
- * -o, --output          save output AST into file (string [=])
- * -f, --format          output format of the AST (yaml|json) (string [=yaml])
- * -t, --type            type of the AST (refract|ast) (string [=refract])
- * -s, --sourcemap       export sourcemap AST into file (string [=])
+ * -o, --output          save output Parse Result into file (string [=])
+ * -f, --format          output format of the Parse Result (yaml|json) (string [=yaml])
+ * -t, --type            type of the Parse Result (refract|ast) (string [=refract])
+ * -s, --sourcemap       export sourcemap in the Parse Result
  * -h, --help            display this help message
  * -v, --version         print Drafter version
- * -l, --validate        validate input only, do not print AST
+ * -l, --validate        validate input only, do not output Parse Result
  * -u, --use-line-num    use line and row number instead of character index when printing annotation
  * ```
  *
  * @author    hmaus
  * @since     2015-08-28
  * @copyright 2015 (c) Hendrik Maus
- * @license   All rights reserved.
  * @package   DrafterPhp
  */
 
-namespace DrafterPhp;
+namespace Hmaus\DrafterPhp;
 
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\ProcessBuilder;
@@ -116,9 +115,9 @@ class Drafter implements DrafterInterface
         return $this;
     }
 
-    public function sourcemap($path)
+    public function sourcemap()
     {
-        $this->options['--sourcemap'] = $path;
+        $this->options['--sourcemap'] = '';
 
         return $this;
     }

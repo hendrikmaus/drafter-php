@@ -45,7 +45,7 @@ If you do not already have, add a `scripts` section to your root composer.json:
 "scripts": {
     "post-install-cmd": [
         "if ! [[ -d ext/drafter ]]; then echo \"### Installing drafter to ./ext; drafter bin to ./vendor/bin/ ###\"; fi",
-        "if ! [[ -d ext/drafter ]]; then git clone --recursive https://github.com/apiaryio/drafter.git ext/drafter; fi",
+        "if ! [[ -d ext/drafter ]]; then git clone --branch v2.2.0 --recursive https://github.com/apiaryio/drafter.git ext/drafter; fi",
         "if ! [[ -d vendor/bin ]]; then mkdir -p vendor/bin; fi",
         "if ! [[ -f vendor/bin/drafter ]]; then cd ext/drafter && ./configure && make drafter; fi",
         "if ! [[ -f vendor/bin/drafter ]]; then cd vendor/bin && ln -s ../../ext/drafter/bin/drafter drafter; fi"
@@ -53,8 +53,7 @@ If you do not already have, add a `scripts` section to your root composer.json:
 }
 ```
 
-> Note: the git clone command currently fetches the latest master of drafter; you can customize this to fir your needs,
-> e.g. use a tagged release or a specific commit
+> Note: the above example checks out a specific given tag `v2.2.0`
 
 Now run `composer install`; it should start building drafter within an `ext/` folder in your project root.
 If you want the script to put drafter somewhere else, modify every occurrence of `ext/drafter` to another one.
@@ -91,85 +90,92 @@ Given this api blueprint source:
         Hello World!
 ```
 
-The result will look similar (json format):
+The result will look similar (json refract):
 
 ```json
 {
-  "element": "category",
-  "meta": {
-    "classes": [
-      "api"
-    ],
-    "title": ""
-  },
+  "element": "parseResult",
   "content": [
     {
       "element": "category",
       "meta": {
         "classes": [
-          "resourceGroup"
+          "api"
         ],
         "title": ""
       },
       "content": [
         {
-          "element": "resource",
+          "element": "category",
           "meta": {
+            "classes": [
+              "resourceGroup"
+            ],
             "title": ""
-          },
-          "attributes": {
-            "href": "/message"
           },
           "content": [
             {
-              "element": "transition",
+              "element": "resource",
               "meta": {
                 "title": ""
               },
+              "attributes": {
+                "href": "/message"
+              },
               "content": [
                 {
-                  "element": "httpTransaction",
+                  "element": "transition",
+                  "meta": {
+                    "title": ""
+                  },
                   "content": [
                     {
-                      "element": "httpRequest",
-                      "attributes": {
-                        "method": "GET"
-                      },
-                      "content": []
-                    },
-                    {
-                      "element": "httpResponse",
-                      "attributes": {
-                        "statusCode": "200",
-                        "headers": {
-                          "element": "httpHeaders",
-                          "content": [
-                            {
-                              "element": "member",
-                              "content": {
-                                "key": {
-                                  "element": "string",
-                                  "content": "Content-Type"
-                                },
-                                "value": {
-                                  "element": "string",
-                                  "content": "text/plain"
-                                }
-                              }
-                            }
-                          ]
-                        }
-                      },
+                      "element": "httpTransaction",
                       "content": [
                         {
-                          "element": "asset",
-                          "meta": {
-                            "classes": "messageBody"
-                          },
+                          "element": "httpRequest",
                           "attributes": {
-                            "contentType": "text/plain"
+                            "method": "GET"
                           },
-                          "content": "Hello World!\n"
+                          "content": []
+                        },
+                        {
+                          "element": "httpResponse",
+                          "attributes": {
+                            "statusCode": "200",
+                            "headers": {
+                              "element": "httpHeaders",
+                              "content": [
+                                {
+                                  "element": "member",
+                                  "content": {
+                                    "key": {
+                                      "element": "string",
+                                      "content": "Content-Type"
+                                    },
+                                    "value": {
+                                      "element": "string",
+                                      "content": "text/plain"
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          "content": [
+                            {
+                              "element": "asset",
+                              "meta": {
+                                "classes": [
+                                  "messageBody"
+                                ]
+                              },
+                              "attributes": {
+                                "contentType": "text/plain"
+                              },
+                              "content": "Hello World!\n"
+                            }
+                          ]
                         }
                       ]
                     }
@@ -185,139 +191,6 @@ The result will look similar (json format):
 }
 ```
 
-Setting the type option to 'ast', results in this abstract syntax tree:
-
-> type 'refract' is the default since since drafter v1.0.0
-
-```json
-{
-  "_version": "4.0",
-  "metadata": [],
-  "name": "",
-  "description": "",
-  "element": "category",
-  "resourceGroups": [
-    {
-      "name": "",
-      "description": "",
-      "resources": [
-        {
-          "element": "resource",
-          "name": "",
-          "description": "",
-          "uriTemplate": "/message",
-          "model": {},
-          "parameters": [],
-          "actions": [
-            {
-              "name": "",
-              "description": "",
-              "method": "GET",
-              "parameters": [],
-              "attributes": {
-                "relation": "",
-                "uriTemplate": ""
-              },
-              "content": [],
-              "examples": [
-                {
-                  "name": "",
-                  "description": "",
-                  "requests": [],
-                  "responses": [
-                    {
-                      "name": "200",
-                      "description": "",
-                      "headers": [
-                        {
-                          "name": "Content-Type",
-                          "value": "text/plain"
-                        }
-                      ],
-                      "body": "Hello World!\n",
-                      "schema": "",
-                      "content": [
-                        {
-                          "element": "asset",
-                          "attributes": {
-                            "role": "bodyExample"
-                          },
-                          "content": "Hello World!\n"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          ],
-          "content": []
-        }
-      ]
-    }
-  ],
-  "content": [
-    {
-      "element": "category",
-      "content": [
-        {
-          "element": "resource",
-          "name": "",
-          "description": "",
-          "uriTemplate": "/message",
-          "model": {},
-          "parameters": [],
-          "actions": [
-            {
-              "name": "",
-              "description": "",
-              "method": "GET",
-              "parameters": [],
-              "attributes": {
-                "relation": "",
-                "uriTemplate": ""
-              },
-              "content": [],
-              "examples": [
-                {
-                  "name": "",
-                  "description": "",
-                  "requests": [],
-                  "responses": [
-                    {
-                      "name": "200",
-                      "description": "",
-                      "headers": [
-                        {
-                          "name": "Content-Type",
-                          "value": "text/plain"
-                        }
-                      ],
-                      "body": "Hello World!\n",
-                      "schema": "",
-                      "content": [
-                        {
-                          "element": "asset",
-                          "attributes": {
-                            "role": "bodyExample"
-                          },
-                          "content": "Hello World!\n"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          ],
-          "content": []
-        }
-      ]
-    }
-  ]
-}
-```
-    
 ### Code Examples
 
 > Found something wrong? Feel free to [contribute](https://github.com/hendrikmaus/drafter-php/blob/master/CONTRIBUTING.md)
