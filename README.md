@@ -45,7 +45,7 @@ If you do not already have, add a `scripts` section to your root composer.json:
 "scripts": {
     "post-install-cmd": [
         "if ! [[ -d ext/drafter ]]; then echo \"### Installing drafter to ./ext; drafter bin to ./vendor/bin/ ###\"; fi",
-        "if ! [[ -d ext/drafter ]]; then git clone --recursive https://github.com/apiaryio/drafter.git ext/drafter; fi",
+        "if ! [[ -d ext/drafter ]]; then git clone --branch v2.2.0 --recursive https://github.com/apiaryio/drafter.git ext/drafter; fi",
         "if ! [[ -d vendor/bin ]]; then mkdir -p vendor/bin; fi",
         "if ! [[ -f vendor/bin/drafter ]]; then cd ext/drafter && ./configure && make drafter; fi",
         "if ! [[ -f vendor/bin/drafter ]]; then cd vendor/bin && ln -s ../../ext/drafter/bin/drafter drafter; fi"
@@ -53,8 +53,7 @@ If you do not already have, add a `scripts` section to your root composer.json:
 }
 ```
 
-> Note: the git clone command currently fetches the latest master of drafter; you can customize this to fir your needs,
-> e.g. use a tagged release or a specific commit
+> Note: the above example checks out a specific given tag `v2.2.0`
 
 Now run `composer install`; it should start building drafter within an `ext/` folder in your project root.
 If you want the script to put drafter somewhere else, modify every occurrence of `ext/drafter` to another one.
