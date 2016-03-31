@@ -6,6 +6,12 @@ The change log itself is written the way that [keepachangelog.com](http://keepac
 
 ## [Unreleased]
 
+## [3.0.0] - 2016-03-31
+## Changed
+- Updated drafter dependency to v2.2.0 in composer.json and readme [BC]
+- Implemented new behavior of the sourcemap argument [BC]
+- Begin namespace with vendor name `Hmaus` [BC]
+
 ## [2.0.0] - 2015-11-07
 ## Changed
 - Increased min required PHP version to >=5.6 [BC]
