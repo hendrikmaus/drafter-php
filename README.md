@@ -45,7 +45,7 @@ If you do not already have, add a `scripts` section to your root composer.json:
 "scripts": {
     "post-install-cmd": [
         "if ! [[ -d ext/drafter ]]; then echo \"### Installing drafter to ./ext; drafter bin to ./vendor/bin/ ###\"; fi",
-        "if ! [[ -d ext/drafter ]]; then git clone --branch v2.2.0 --recursive https://github.com/apiaryio/drafter.git ext/drafter; fi",
+        "if ! [[ -d ext/drafter ]]; then git clone --branch v3.0.0 --recursive https://github.com/apiaryio/drafter.git ext/drafter; fi",
         "if ! [[ -d vendor/bin ]]; then mkdir -p vendor/bin; fi",
         "if ! [[ -f vendor/bin/drafter ]]; then cd ext/drafter && ./configure && make drafter; fi",
         "if ! [[ -f vendor/bin/drafter ]]; then cd vendor/bin && ln -s ../../ext/drafter/bin/drafter drafter; fi"
@@ -53,13 +53,14 @@ If you do not already have, add a `scripts` section to your root composer.json:
 }
 ```
 
-> Note: the above example checks out a specific given tag `v2.2.0`
+> Note: the above example checks out a specific given tag `v3.0.0`
 
 Now run `composer install`; it should start building drafter within an `ext/` folder in your project root.
 If you want the script to put drafter somewhere else, modify every occurrence of `ext/drafter` to another one.
 
 > Note: there is an open Composer feature request for downloading binaries and 
-> compiling from source: https://github.com/composer/composer/issues/4381
+> compiling from source: https://github.com/composer/composer/issues/4381  
+> Update: The feature was closed without being tackled for the time being
 
 You would see this method used by default, when [contributing to drafter-php](CONTRIBUTING.md).
 Installing Drafter using composer has only been tested on **Mac OS X and Linux (Ubuntu 12)**.
