@@ -16,6 +16,7 @@ before_install:
 
 before_script:
   - composer install --prefer-source --no-interaction --dev
+  - composer install-drafter
   - git config --global user.name travis-ci
   - git config --global user.email travis@example.com
 
