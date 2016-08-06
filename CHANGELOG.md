@@ -6,6 +6,10 @@ The change log itself is written the way that [keepachangelog.com](http://keepac
 
 ## [Unreleased]
 
+## [4.0.0] - 2016-08-05
+## Changed
+- Update drafter dependency to v3.0.0 [BC]
+
 ## [3.0.0] - 2016-03-31
 ## Changed
 - Updated drafter dependency to v2.2.0 in composer.json and readme [BC]
