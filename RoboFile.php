@@ -34,7 +34,6 @@ class RoboFile extends \Robo\Tasks
     {
         $this
             ->taskPHPUnit('vendor/bin/phpunit')
-            ->configFile('phpunit.xml')
             ->run();
     }
 }

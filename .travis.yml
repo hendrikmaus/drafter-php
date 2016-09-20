@@ -21,7 +21,6 @@ install:
 
 before_script:
   - composer install --prefer-source --no-interaction --dev
-  - composer install-drafter
   - git config --global user.name travis-ci
   - git config --global user.email travis@example.com
 
@@ -30,7 +29,3 @@ script: vendor/bin/phpunit
 after_script:
   - vendor/bin/test-reporter
   - bash <(curl -s https://codecov.io/bash)
-
-addons:
-  code_climate:
-    repo_token: c8a07ee2759b229cb3bee66fb112ef1ce95494c

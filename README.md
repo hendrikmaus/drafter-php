@@ -11,8 +11,7 @@ PHP wrapper for [Drafter](https://github.com/apiaryio/drafter) API Blueprint Par
 Drafter-php allows you to use use the [drafter](https://github.com/apiaryio/drafter) API Blueprint Parser harness
 with your PHP application.
 
-In a nutshell: you can convert [API Blueprint](http://apiblueprint.org/) files to 
-[refract] Abstract Syntax Trees in JSON or YAML format.
+In a nutshell: you can convert [API Blueprint](http://apiblueprint.org/) files to parse result.
 
 [API Blueprint](http://apiblueprint.org/) is a webservice documentation language built on top of 
 [Markdown](https://en.wikipedia.org/wiki/Markdown).
@@ -36,37 +35,7 @@ This will install the PHP package with your application.
 Please keep in mind that **Drafter is not included**.
 
 ### Install Drafter Command Line Tool using Composer
-The Drafter repository itself has a section on [installing drafter](https://github.com/apiaryio/drafter#install) it.
-
-Another way of installing Drafter, is using a [composer script](https://getcomposer.org/doc/articles/scripts.md).  
-If you do not already have, add a `scripts` section to your root composer.json:
-
-```json
-"scripts": {
-    "post-install-cmd": [
-        "if ! [[ -d ext/drafter ]]; then echo \"### Installing drafter to ./ext; drafter bin to ./vendor/bin/ ###\"; fi",
-        "if ! [[ -d ext/drafter ]]; then git clone --branch v3.0.0 --recursive https://github.com/apiaryio/drafter.git ext/drafter; fi",
-        "if ! [[ -d vendor/bin ]]; then mkdir -p vendor/bin; fi",
-        "if ! [[ -f vendor/bin/drafter ]]; then cd ext/drafter && ./configure && make drafter; fi",
-        "if ! [[ -f vendor/bin/drafter ]]; then cd vendor/bin && ln -s ../../ext/drafter/bin/drafter drafter; fi"
-    ]
-}
-```
-
-> Note: the above example checks out a specific given tag `v3.0.0`
-
-Now run `composer install`; it should start building drafter within an `ext/` folder in your project root.
-If you want the script to put drafter somewhere else, modify every occurrence of `ext/drafter` to another one.
-
-> Note: there is an open Composer feature request for downloading binaries and 
-> compiling from source: https://github.com/composer/composer/issues/4381  
-> Update: The feature was closed without being tackled for the time being
-
-You would see this method used by default, when [contributing to drafter-php](CONTRIBUTING.md).
-Installing Drafter using composer has only been tested on **Mac OS X and Linux (Ubuntu 12)**.
-
-If you have issues or questions regarding Drafter, please turn to 
-the [Drafter repository](https://github.com/apiaryio/drafter).
+Head over to [hmaus/drafter-installer](https://github.com/hendrikmaus/drafter-installer).
 
 ## Usage of Drafter-php
 1. Get an instance of the `\DrafterPhp\DrafterInterface` implementation, `\DrafterPhp\Drafter`
