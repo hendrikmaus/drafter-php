@@ -6,6 +6,12 @@ The change log itself is written the way that [keepachangelog.com](http://keepac
 
 ## [Unreleased]
 
+## [4.0.1] - 2016-09-20
+## Changed
+- Removed the cumbersome way to install drafter and added a reference to hmaus/drafter-installer
+- Renamed phpunit.xml to phpunit.xml.dist and ignored phpunit.xml so you can customize your settings
+- Slimmed down phpunit output
+
 ## [4.0.0] - 2016-08-05
 ## Changed
 - Update drafter dependency to v3.0.0 [BC]
