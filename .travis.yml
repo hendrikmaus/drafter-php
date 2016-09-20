@@ -29,3 +29,7 @@ script: vendor/bin/phpunit
 after_script:
   - vendor/bin/test-reporter
   - bash <(curl -s https://codecov.io/bash)
+
+addons:
+  code_climate:
+    repo_token: c8a07ee2759b229cb3bee66fb112ef1ce95494c
