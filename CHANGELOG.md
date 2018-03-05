@@ -6,6 +6,11 @@ The change log itself is written the way that [keepachangelog.com](http://keepac
 
 ## [Unreleased]
 
+## [5.0.0] - 2018-03-05
+## Changed
+- Allow v4 of Symfony component
+- Update Robo task runner
+
 ## [4.0.1] - 2016-09-20
 ## Changed
 - Removed the cumbersome way to install drafter and added a reference to hmaus/drafter-installer
