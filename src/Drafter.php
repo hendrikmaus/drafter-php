@@ -47,7 +47,6 @@
 namespace Hmaus\DrafterPhp;
 
 use Symfony\Component\Process\Process;
-use Symfony\Component\Process\ProcessBuilder;
 
 class Drafter implements DrafterInterface
 {
@@ -145,16 +144,13 @@ class Drafter implements DrafterInterface
 
     public function build()
     {
-        $builder = new ProcessBuilder();
-        $builder->setPrefix($this->binary);
-
         $this->validateOptionsAndArguments();
 
-        $builder->setArguments(
-            $this->getProcessBuilderArguments()
+        $process = new Process(
+            $this->getProcessCommand()
         );
 
-        return $builder->getProcess();
+        return $process;
     }
 
     public function run(Process $process = null)
@@ -241,29 +237,31 @@ class Drafter implements DrafterInterface
     }
 
     /**
-     * Get arguments array to pass it into the process builder.
+     * Get command to pass it into the process.
      *
      * The method will append the input file path argument to the end, like
      * described in the `drafter --help` output.
      *
-     * @return array|\string[]
+     * @return string
      */
-    private function getProcessBuilderArguments()
+    private function getProcessCommand()
     {
         $options   = $this->transformOptions();
         $options[] = $this->input;
 
-        return $options;
+        $command = $this->binary . ' ' . implode(' ', $options);
+
+        return $command;
     }
 
     /**
-     * Return options prepared to be passed into the ProcessBuilder.
+     * Return options prepared to be passed into the Process.
      *
      * E.g.: ["--output" => "path/to/file"] -> ["--output=path/to/file"]
      *
      * The original format is an associative array, where the key is the
      * option name and the value is the respective value.
-     * The process builder will want those as single strings to escape them
+     * The process will want those as single strings to escape them
      * for the command line. Hence, we have to turn ["--output" => "path/to/file"]
      * into ["--output=path/to/file"].
      *
@@ -271,7 +269,7 @@ class Drafter implements DrafterInterface
      */
     private function transformOptions()
     {
-        $builderOptions = [];
+        $processOptions = [];
 
         foreach ($this->options as $key => $value) {
             $option = $key;
@@ -280,9 +278,9 @@ class Drafter implements DrafterInterface
                 $option .= '=' . $value;
             }
 
-            $builderOptions[] = $option;
+            $processOptions[] = $option;
         }
 
-        return $builderOptions;
+        return $processOptions;
     }
 }
