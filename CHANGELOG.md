@@ -6,6 +6,10 @@ The change log itself is written the way that [keepachangelog.com](http://keepac
 
 ## [Unreleased]
 
+## [5.0.1] - 2018-07-20
+## Fixed
+- Allow spaces in filenames
+
 ## [5.0.0] - 2018-03-05
 ## Changed
 - Allow v4 of Symfony component
