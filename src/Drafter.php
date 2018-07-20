@@ -247,7 +247,7 @@ class Drafter implements DrafterInterface
     private function getProcessCommand()
     {
         $options   = $this->transformOptions();
-        $options[] = $this->input;
+        $options[] = escapeshellarg($this->input);
 
         $command = $this->binary . ' ' . implode(' ', $options);
 
@@ -275,7 +275,7 @@ class Drafter implements DrafterInterface
             $option = $key;
 
             if ($value) {
-                $option .= '=' . $value;
+                $option .= '=' . escapeshellarg($value);
             }
 
             $processOptions[] = $option;

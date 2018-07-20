@@ -149,6 +149,28 @@ class DrafterTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Build the process instance using drafter but with space in file name (input and output)
+     * @expectedException \Exception
+     * @expectedExceptionMessageRegExp /unable to open file/
+     */
+    public function testBuildWithSpace()
+    {
+        $process = $this
+            ->drafter
+            ->input($this->fixturePath . 'simplest example.apib')
+            ->output($this->fixturePath . 'simplest example.json')
+            ->format('json')
+            ->type('ast')
+            ->build();
+
+        $this->assertInstanceOf(Process::class, $process);
+
+        $this
+            ->drafter
+            ->run($process);
+    }
+
+    /**
      * Test setting all supported options with correct syntax.
      */
     public function testSetAllAvailableOptions()
