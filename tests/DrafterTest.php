@@ -83,30 +83,11 @@ class DrafterTest extends \PHPUnit_Framework_TestCase
     /**
      * Parse a simple example to json ast.
      */
-    public function testParseSimplestAstExampleToJson()
+    public function testParseSimplestExampleToJson()
     {
         $json = $this
             ->drafter
             ->input($this->fixturePath . 'simplest-example.apib')
-            ->type('ast')
-            ->format('json')
-            ->run();
-
-        $this->assertNotNull($json);
-        $this->assertJson($json);
-
-        return $this->drafter;
-    }
-
-    /**
-     * Parse a simple example to json ast.
-     */
-    public function testParseSimplestRefractExampleToJson()
-    {
-        $json = $this
-            ->drafter
-            ->input($this->fixturePath . 'simplest-example.apib')
-            ->type('refract')
             ->format('json')
             ->run();
 
@@ -120,7 +101,8 @@ class DrafterTest extends \PHPUnit_Framework_TestCase
      * The drafter instance will hold its state; we can invoke `run` again for the same result.
      *
      * @param Drafter $drafter
-     * @depends testParseSimplestAstExampleToJson
+     * @depends testParseSimplestExampleToJson
+     * @throws \Exception
      */
     public function testRunningDrafterAgainWithoutReset(Drafter $drafter)
     {
@@ -136,7 +118,6 @@ class DrafterTest extends \PHPUnit_Framework_TestCase
             ->drafter
             ->input($this->fixturePath . 'simplest-example.apib')
             ->format('json')
-            ->type('ast')
             ->build();
 
         $this->assertInstanceOf(Process::class, $process);
@@ -160,7 +141,6 @@ class DrafterTest extends \PHPUnit_Framework_TestCase
             ->input($this->fixturePath . 'simplest example.apib')
             ->output($this->fixturePath . 'simplest example.json')
             ->format('json')
-            ->type('ast')
             ->build();
 
         $this->assertInstanceOf(Process::class, $process);

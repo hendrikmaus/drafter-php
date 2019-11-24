@@ -50,21 +50,6 @@ interface DrafterInterface
     public function format($format);
 
     /**
-     * Set type option.
-     *
-     * Available types:
-     *   * refract (default)
-     *   * ast
-     *
-     * Help:
-     *   -t, --type            type of the AST (refract|ast) (string [=refract])
-     *
-     * @param string $type type to retrieve, e.g. refract or ast
-     * @return $this
-     */
-    public function type($type);
-
-    /**
      * Set sourcemap argument.
      *
      * Drafter will export sourcemap in the Parse Result
