@@ -30,7 +30,7 @@
         }
     },
     "extra": {
-        "drafter-installer-tag": "v3.1.1"
+        "drafter-installer-tag": "v4.0.2"
     },
     "scripts": {
         "clean": "rm -rf vendor/ ext/ composer.lock",

@@ -107,13 +107,6 @@ class Drafter implements DrafterInterface
         return $this;
     }
 
-    public function type($type)
-    {
-        $this->options['--type'] = $type;
-
-        return $this;
-    }
-
     public function sourcemap()
     {
         $this->options['--sourcemap'] = '';

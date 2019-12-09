@@ -6,6 +6,11 @@ The change log itself is written the way that [keepachangelog.com](http://keepac
 
 ## [Unreleased]
 
+## [6.0.0] - 2019-11-24
+## Changed
+- Update drafter dependency to v4.0.2 [BC]
+- Removed `type` option
+
 ## [5.0.1] - 2018-07-20
 ## Fixed
 - Allow spaces in filenames
