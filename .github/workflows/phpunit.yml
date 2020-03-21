@@ -33,7 +33,7 @@ jobs:
       
     - name: Send report to codeclimate
       env:
-        CC_TEST_REPORTER_ID: c8a07ee2759b229cb3bee66fb112ef1ce95494c
+        CC_TEST_REPORTER_ID: c8a07ee2759b229cb3bee66fb112ef1ce95494cd93ee81339bdf18fdceff55aa
       run: ./cc-test-reporter after-build -t clover
       
     - name: Report test coverage
