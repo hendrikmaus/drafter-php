@@ -21,13 +21,20 @@ jobs:
 
     - name: Install dependencies
       run: composer install --prefer-source --no-interaction --dev
-      
+    
+    - name: Setup codeclimate test reporter
+      run: |
+        curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+        chmod +x ./cc-test-reporter
+        ./cc-test-reporter before-build
+        
     - name: Run test
       run: vendor/bin/phpunit
-    
-    - name: Report test results
-      run: |
-        CODECLIMATE_REPO_TOKEN="c8a07ee2759b229cb3bee66fb112ef1ce95494c" vendor/bin/test-reporter
-    
+      
+    - name: Send report to codeclimate
+      env:
+        CC_TEST_REPORTER_ID: c8a07ee2759b229cb3bee66fb112ef1ce95494c
+      run: ./cc-test-reporter after-build -t clover
+      
     - name: Report test coverage
       run: bash <(curl -s https://codecov.io/bash)
