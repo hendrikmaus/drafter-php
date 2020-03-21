@@ -26,9 +26,8 @@ jobs:
       run: vendor/bin/phpunit
     
     - name: Report test results
-      run: vendor/bin/test-reporter
-      env:
-        CODECLIMATE_REPO_TOKEN: c8a07ee2759b229cb3bee66fb112ef1ce95494c
+      run: |
+        CODECLIMATE_REPO_TOKEN="c8a07ee2759b229cb3bee66fb112ef1ce95494c" vendor/bin/test-reporter
     
     - name: Report test coverage
       run: bash <(curl -s https://codecov.io/bash)
